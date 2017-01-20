@@ -10,7 +10,8 @@ import {
   StyleSheet,
   Text,
   View,
-  TextInput
+  TextInput,
+  TouchableHighlight
 } from 'react-native';
 
 export default class TodoNative extends Component {
@@ -25,11 +26,19 @@ export default class TodoNative extends Component {
     const { value } = e.target
     this.setState({ newTodo: value })
   }
+  handlePress (e) {
+
+  }
   render() {
     return (
       <View style={styles.container}>
         <TextInput value={this.state.newTodo} onChange={this.handleTextChange.bind(this)} />
         {this.state.todos.map(todo => <Text>{todo}</Text>)}
+        <TouchableHighlight onPress={this.handlePress.bind(this)}>
+          <Text>
+            Touch me
+          </Text>
+        </TouchableHighlight>
       </View>
     );
   }
