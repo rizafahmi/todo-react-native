@@ -8,11 +8,17 @@ import React, { Component } from 'react'
 import {
   AppRegistry
 } from 'react-native'
+import { Provider } from 'react-redux'
+import store  from './src/store.js'
 
-import Todo from './src/components/Todo.js'
+import HNews from './src/components/HNews.js'
 
 const TodoNative = () => {
-  return (<Todo />)
-}
+  return (
+    <Provider store={store}>
+      <HNews />
+    </Provider>
+    )
+    }
 
-AppRegistry.registerComponent('TodoNative', () => TodoNative)
+    AppRegistry.registerComponent('TodoNative', () => TodoNative)
