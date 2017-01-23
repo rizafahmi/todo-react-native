@@ -1,9 +1,11 @@
 import React from 'react'
 import {
   View,
+  TouchableOpacity,
   Text
 } from 'react-native'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 const HNews = (props) => {
   return (
@@ -16,6 +18,11 @@ const HNews = (props) => {
           )
         })}
       </View>
+      <View>
+        <TouchableOpacity onPress={props.addNews}>
+          <Text>Add News</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   )
 
@@ -26,4 +33,15 @@ const mapStateToProps = (state) => {
     posts: state.HNReducer
   }
 }
-export default connect(mapStateToProps)(HNews)
+const mapActionToProps = (dispatch) => {
+  return bindActionCreators({
+    addNews(post={title: 'addNew', id: 99}) {
+      return {
+        type: 'ADD_POST',
+        payload: post
+      }
+    }
+
+  }, dispatch)
+}
+export default connect(mapStateToProps, mapActionToProps)(HNews)
