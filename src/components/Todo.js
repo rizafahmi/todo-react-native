@@ -15,11 +15,13 @@ class Todo extends React.Component {
       todos: [],
       newTodo: ''
     }
+    console.warn(JSON.stringify(this.state, null, 2))
   }
   handleChange (text) {
     this.setState({
       newTodo: text
     })
+    console.warn(JSON.stringify(this.state, null, 2))
   }
   handlePress () {
     const todos = [...this.state.todos, this.state.newTodo]
