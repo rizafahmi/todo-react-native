@@ -1,6 +1,6 @@
 import { createStore } from 'redux'
-import HNReducer from './reducers.js'
+import reducers from './reducers.js'
 
-const store = createStore(HNReducer)
+const store = createStore(reducers)
 
 export default store
