@@ -7,17 +7,45 @@ import {
   StyleSheet
 } from 'react-native'
 
-const Todo = () => {
-  return (
-    <View style={styles.container}>
-      <TextInput />
-      <TouchableHighlight>
-        <Text>
-          Save Todo
-        </Text>
-      </TouchableHighlight>
-    </View>
-  )
+
+class Todo extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      todos: [],
+      newTodo: ''
+    }
+  }
+  handleChange (text) {
+    this.setState({
+      newTodo: text
+    })
+  }
+  handlePress () {
+    const todos = [...this.state.todos, this.state.newTodo]
+    this.setState({
+      todos: todos,
+      newTodo: ''
+    })
+  }
+  render () {
+
+    return (
+      <View style={styles.container}>
+        <TextInput value={this.state.newTodo} onChangeText={this.handleChange.bind(this)} />
+        <TouchableHighlight onPress={this.handlePress.bind(this)}>
+          <Text>
+            Save Todo
+          </Text>
+        </TouchableHighlight>
+        <View>
+          {this.state.todos.map((todo, i) => (
+            <Text key={i}>{todo}</Text>
+          ))}
+        </View>
+      </View>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
