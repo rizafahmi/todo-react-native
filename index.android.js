@@ -4,16 +4,16 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   AppRegistry
-} from 'react-native';
+} from 'react-native'
 
 import Todo from './src/components/Todo.js'
-import Fancy from './src/components/Fancy.js'
+import HNews from './src/components/HNews.js'
 
 const TodoNative = () => {
-  return (<Fancy />)
+  return (<HNews />)
 }
 
 AppRegistry.registerComponent('TodoNative', () => TodoNative)

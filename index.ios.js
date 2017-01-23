@@ -15,7 +15,7 @@ import {
 import Fancy from './src/components/Fancy.js'
 
 const TodoNative = () => {
-  return (<Fancy />)
+  return (<Todo />)
 }
 
 AppRegistry.registerComponent('TodoNative', () => TodoNative)
