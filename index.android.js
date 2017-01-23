@@ -10,10 +10,9 @@ import {
 } from 'react-native'
 
 import Todo from './src/components/Todo.js'
-import HNews from './src/components/HNews.js'
 
 const TodoNative = () => {
-  return (<HNews />)
+  return (<Todo />)
 }
 
 AppRegistry.registerComponent('TodoNative', () => TodoNative)

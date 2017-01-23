@@ -15,20 +15,43 @@ class Todo extends React.Component {
       todos: [],
       newTodo: ''
     }
-    console.warn(JSON.stringify(this.state, null, 2))
+  }
+  componentWillMount () {
+    fetch('http://192.168.0.112:3000/todos', {
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+      .then(res => res.json())
+      .then(todos => {
+        this.setState({
+          todos
+        })
+      })
   }
   handleChange (text) {
     this.setState({
       newTodo: text
     })
-    console.warn(JSON.stringify(this.state, null, 2))
   }
   handlePress () {
-    const todos = [...this.state.todos, this.state.newTodo]
-    this.setState({
-      todos: todos,
-      newTodo: ''
+    fetch('http://192.168.0.112:3000/todos', {
+      method: 'post',
+      body: JSON.stringify({
+        text: this.state.newTodo
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
     })
+      .then(res => res.json())
+      .then(data => {
+        const todos = [...this.state.todos, data]
+        this.setState({
+          todos: todos,
+          newTodo: ''
+        })
+      })
   }
   render () {
 
@@ -42,7 +65,7 @@ class Todo extends React.Component {
         </TouchableHighlight>
         <View>
           {this.state.todos.map((todo, i) => (
-            <Text key={i}>{todo}</Text>
+            <Text key={todo.id}>{todo.text}</Text>
           ))}
         </View>
       </View>

@@ -1,0 +1,24 @@
+{
+  "todos": [
+    {
+      "text": "clean up",
+      "id": 1
+    },
+    {
+      "text": "learn react native",
+      "id": 2
+    },
+    {
+      "text": "learn react native",
+      "id": 3
+    },
+    {
+      "text": "learn react native",
+      "id": 4
+    },
+    {
+      "text": "learn redux",
+      "id": 5
+    }
+  ]
+}
