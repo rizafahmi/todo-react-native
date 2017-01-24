@@ -17,7 +17,7 @@ const HNReducer = (state = initialState, action) => {
     case 'FETCH_POSTS_COMPLETE':
       return action.payload
     case 'ADD_POST':
-      return [...state, action.payload]
+      return [action.payload, ...state]
     default:
       return state
   }
