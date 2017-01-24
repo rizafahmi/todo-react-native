@@ -19,7 +19,7 @@ const HNews = (props) => {
         })}
       </View>
       <View>
-        <TouchableOpacity onPress={props.addNews}>
+        <TouchableOpacity onPress={() => props.addNews()}>
           <Text>Add News</Text>
         </TouchableOpacity>
       </View>
@@ -33,15 +33,14 @@ const mapStateToProps = (state) => {
     posts: state.HNReducer
   }
 }
-const mapActionToProps = (dispatch) => {
-  return bindActionCreators({
-    addNews(post={title: 'addNew', id: 99}) {
-      return {
-        type: 'ADD_POST',
-        payload: post
-      }
-    }
+const addNews = (post={title: 'brand new'}) => {
+  return {
+    type: 'ADD_POST',
+    payload: post
+  }
+}
 
-  }, dispatch)
+const mapActionToProps = (dispatch) => {
+  return bindActionCreators({addNews}, dispatch)
 }
 export default connect(mapStateToProps, mapActionToProps)(HNews)
