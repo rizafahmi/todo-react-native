@@ -53,6 +53,9 @@ class Todo extends React.Component {
         })
       })
   }
+  _navigateBack() {
+    this.props.navigator.pop()
+  }
   render () {
 
     return (
@@ -61,6 +64,11 @@ class Todo extends React.Component {
         <TouchableHighlight onPress={this.handlePress.bind(this)}>
           <Text>
             Save Todo
+          </Text>
+        </TouchableHighlight>
+        <TouchableHighlight onPress={this._navigateBack.bind(this)}>
+          <Text>
+            Go Back
           </Text>
         </TouchableHighlight>
         <View>
