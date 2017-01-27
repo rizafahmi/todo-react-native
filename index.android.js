@@ -11,6 +11,7 @@ import {
 } from 'react-native'
 import { Provider } from 'react-redux'
 import store  from './src/store.js'
+import TabView from 'react-native-scrollable-tab-view'
 
 import HNews from './src/components/HNews.js'
 import Todo from './src/components/Todo.js'
@@ -31,10 +32,10 @@ export default class TodoNative extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <Navigator
-          initialRoute={{name: 'News', title: 'Home'}}
-          renderScene={this.renderScene}
-        />
+        <TabView>
+          <HNews tabLabel="News" />
+          <Todo tabLabel="Todo" />
+        </TabView>
       </Provider>
     )
   }
