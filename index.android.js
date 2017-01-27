@@ -22,7 +22,7 @@ export default class TodoNative extends React.Component {
   }
   renderScene(route, navigator) {
     switch(route.name) {
-      case 'HNews':
+      case 'News':
         return <HNews navigator={navigator} />
       case 'Todo':
         return <Todo navigator={navigator} />
@@ -32,7 +32,7 @@ export default class TodoNative extends React.Component {
     return (
       <Provider store={store}>
         <Navigator
-          initialRoute={{name: 'HNews'}}
+          initialRoute={{name: 'News', title: 'Home'}}
           renderScene={this.renderScene}
         />
       </Provider>

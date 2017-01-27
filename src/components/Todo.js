@@ -87,6 +87,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+    height: 45,
+    flexDirection: 'row',
+    borderWidth: 1,
+    borderRadius: 8,
+    alignSelf: 'stretch'
+  },
+  title: {
+    marginBottom: 20,
+    fontSize: 25,
+    textAlign: 'center',
+    color: '#bada55'
   },
   welcome: {
     fontSize: 20,
