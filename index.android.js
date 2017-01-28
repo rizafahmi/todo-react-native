@@ -7,7 +7,9 @@
 import React, { Component } from 'react'
 import {
   AppRegistry,
-  Navigator
+  View,
+  Navigator,
+  StyleSheet
 } from 'react-native'
 import { Provider } from 'react-redux'
 import store  from './src/store.js'
@@ -15,6 +17,7 @@ import TabView from 'react-native-scrollable-tab-view'
 
 import HNews from './src/components/HNews.js'
 import Todo from './src/components/Todo.js'
+import { TopBar } from './src/components/TopBar.js'
 
 export default class TodoNative extends React.Component {
   constructor (props) {
@@ -32,13 +35,22 @@ export default class TodoNative extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <TabView>
-          <HNews tabLabel="News" />
-          <Todo tabLabel="Todo" />
-        </TabView>
+        <View style={styles.container}>
+          <TopBar />
+          <TabView>
+            <HNews tabLabel="News" />
+            <Todo tabLabel="Todo" />
+          </TabView>
+        </View>
       </Provider>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  }
+})
 
 AppRegistry.registerComponent('TodoNative', () => TodoNative)
