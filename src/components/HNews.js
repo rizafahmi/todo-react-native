@@ -7,6 +7,8 @@ import {
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
+import LinearGradient from 'react-native-linear-gradient'
+
 class HNews extends React.Component {
   constructor (props) {
     super(props)

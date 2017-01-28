@@ -6,7 +6,7 @@ import {
   TouchableHighlight,
   StyleSheet
 } from 'react-native'
-
+import LinearGradient from 'react-native-linear-gradient'
 
 class Todo extends React.Component {
   constructor (props) {
@@ -59,7 +59,8 @@ class Todo extends React.Component {
   render () {
 
     return (
-      <View style={styles.container}>
+      <LinearGradient colors={["#5AD427", "#A4E786"]}
+        style={styles.container}>
         <TextInput value={this.state.newTodo} onChangeText={this.handleChange.bind(this)} />
         <TouchableHighlight onPress={this.handlePress.bind(this)}>
           <Text>
@@ -76,7 +77,7 @@ class Todo extends React.Component {
             <Text key={todo.id}>{todo.text}</Text>
           ))}
         </View>
-      </View>
+      </LinearGradient>
     )
   }
 }
