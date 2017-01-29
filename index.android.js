@@ -9,9 +9,12 @@ import {
   AppRegistry,
   View,
   Navigator,
+  Text,
+  TouchableOpacity,
   StyleSheet
 } from 'react-native'
 import { Provider } from 'react-redux'
+import { StackNavigator } from 'react-navigation'
 import store  from './src/store.js'
 import TabView from 'react-native-scrollable-tab-view'
 
@@ -22,35 +25,47 @@ import { TopBar } from './src/components/TopBar.js'
 export default class TodoNative extends React.Component {
   constructor (props) {
     super(props)
-    this.renderScene = this.renderScene.bind(this)
   }
-  renderScene(route, navigator) {
-    switch(route.name) {
-      case 'News':
-        return <HNews navigator={navigator} />
-      case 'Todo':
-        return <Todo navigator={navigator} />
-    }
+  static navigationOptions = {
+    title: 'Welcome'
   }
-  render() {
+  render () {
+    const { navigate } = this.props.navigation
     return (
-      <Provider store={store}>
-        <View style={styles.container}>
-          <TopBar />
-          <TabView>
-            <HNews tabLabel="News" />
-            <Todo tabLabel="Todo" />
-          </TabView>
-        </View>
-      </Provider>
+      <View>
+      <Text>Welcome, Navigation!</Text>
+      <TouchableOpacity
+        onPress={() => navigate('Chat', {user: 'Sarah'})}
+        title="Chat with Sarah"
+      >
+        <Text>Chat with Sarah</Text>
+      </TouchableOpacity>
+    </View>
     )
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
+class ChatScreen extends React.Component {
+  static navigationOptions = {
+    title: ({ state }) => `Chat with ${state.params.user}`
+  }
+  render () {
+    const { params } = this.props.navigation.state
+    return (
+      <View>
+        <Text>Chat with {params.user}</Text>
+      </View>
+    )
+  }
+}
+
+const NavApp = StackNavigator({
+  Home: {
+    screen: TodoNative
+  },
+  Chat: {
+    screen: ChatScreen
   }
 })
 
-AppRegistry.registerComponent('TodoNative', () => TodoNative)
+AppRegistry.registerComponent('TodoNative', () => NavApp)
