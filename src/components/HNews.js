@@ -3,7 +3,8 @@ import {
   View,
   TouchableOpacity,
   Text,
-  Modal
+  Modal,
+  ListView
 } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -13,8 +14,12 @@ import LinearGradient from 'react-native-linear-gradient'
 class HNews extends React.Component {
   constructor (props) {
     super(props)
+    const ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
+    })
     this.state = {
-      modalVisibility: false
+      modalVisibility: false,
+      dataSource: ds.cloneWithRows(props.posts)
     }
     this._navigate = this._navigate.bind(this)
     this._openModal = this._openModal.bind(this)
@@ -47,7 +52,7 @@ class HNews extends React.Component {
           })}
         </View>
         <View>
-          <TouchableOpacity onPress={() => props.addNews()}>
+          <TouchableOpacity onPress={() => this.props.addNews()}>
             <Text>Add News</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={this._navigate}>
@@ -68,6 +73,10 @@ class HNews extends React.Component {
             <Text>Close</Text>
           </TouchableOpacity>
         </Modal>
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={(item) => <Text>{item.title}</Text>}
+        />
       </View>
     )
 
